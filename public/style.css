@@ -166,7 +166,7 @@
   
   @media (max-width: 860px) {
     main {
-      background-image: url('https://content.codecademy.com/courses/intermediate-javascript-requests/wanderlust/background_photo_moble.jpg');
+      background-image: url('../img/travel-header-vancouver.jpg');
     }
   
     h1 {
@@ -201,4 +201,23 @@
       margin: auto;
       text-align: center;
     }
+  }
+
+  ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: white;
+    background-color: black;
+    font-weight: bold;
+    opacity: 1; /* Firefox */
+  }
+  
+  :-ms-input-placeholder { /* Internet Explorer 10-11 */
+    background-color: black;
+    font-weight: bold;
+    color: white;
+  }
+  
+  ::-ms-input-placeholder { /* Microsoft Edge */
+    background-color: black;
+    font-weight: bold;
+    color: white;
   }
