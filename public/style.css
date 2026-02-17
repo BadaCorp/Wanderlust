@@ -1,223 +1,341 @@
+:root {
+  --bg: #f8f5f0;
+  --ink: #12263a;
+  --brand: #f25f4c;
+  --brand-dark: #bf4342;
+  --paper: rgba(255, 255, 255, 0.82);
+  --line: rgba(18, 38, 58, 0.14);
+  --success: #18794e;
+  --error: #9f1239;
+  --muted: #52606d;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Manrope", "Segoe UI", sans-serif;
+  color: var(--ink);
+  background:
+    radial-gradient(circle at 10% 10%, #ffd7c2, transparent 45%),
+    radial-gradient(circle at 90% 2%, #b6e4ff, transparent 35%),
+    linear-gradient(180deg, #f9f4eb 0%, #f5f6fb 45%, #ebf3ff 100%);
+  min-height: 100vh;
+}
+
+.hero {
+  position: relative;
+  min-height: 72vh;
+  background:
+    linear-gradient(to right, rgba(17, 24, 39, 0.62), rgba(17, 24, 39, 0.35)),
+    url('../img/travel-header-vancouver.jpg');
+  background-size: cover;
+  background-position: center;
+  display: grid;
+  align-items: center;
+  padding: 2rem 1.2rem;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    repeating-linear-gradient(
+      -45deg,
+      rgba(255, 255, 255, 0.04) 0,
+      rgba(255, 255, 255, 0.04) 2px,
+      transparent 2px,
+      transparent 16px
+    );
+}
+
+.hero__content {
+  position: relative;
+  max-width: 860px;
+  margin: 0 auto;
+  width: 100%;
+  color: #ffffff;
+}
+
 .logo {
-    padding: 10px;
-  }
-  
-  main {
-    margin: 0px auto 50px auto;
-    text-align: center;
-    background-image: url('../img/travel-header-vancouver.jpg');
-    background-size: cover;
-    text-align: center;
-  }
-  
-  h1 {
-    padding-top: 150px;
-    font-family: Montserrat;
-    font-size: 64px;
-    font-weight: 300;
-    letter-spacing: 1.1px;
-    text-align: center;
-    color: #ffffff;
-    margin: auto;
-  }
-  
-  h3 {
-    font-family: Work Sans;
-    font-weight: 500;
-    line-height: 1.29;
-    color: #27c19e;
-    padding-left: 5px
-  }
-  
-  p {
-    font-family: Work Sans;
-    font-size: 14px;
-    font-weight: 300;
-    line-height: 1.36;
-    text-align: left;
-    color: #4a4a4a;
-    padding-left: 5px;
-  }
-  
-  form {
-    margin-top: 50px;
-    height: 100px;
-  }
-  
-  footer {
-    display: flex;
-    align-items: center;
-    height: 50px;
-  }
-  
-  .weather h2 {
-    position: relative;
-    padding: 5px;
-  }
-  
+  width: min(220px, 52vw);
+}
+
+.eyebrow {
+  margin-top: 1.2rem;
+  text-transform: uppercase;
+  letter-spacing: 0.24em;
+  font-size: 0.75rem;
+  color: #f7cf9b;
+}
+
+h1 {
+  margin-top: 0.7rem;
+  font-family: "Fraunces", "Georgia", serif;
+  font-size: clamp(2.1rem, 5vw, 4.3rem);
+  line-height: 1.1;
+  max-width: 14ch;
+}
+
+.hero__subtitle {
+  margin-top: 0.8rem;
+  max-width: 52ch;
+  line-height: 1.45;
+  color: #ecf0f5;
+}
+
+#search-form {
+  margin-top: 1.2rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+#city {
+  width: min(420px, 100%);
+  border: 1px solid rgba(255, 255, 255, 0.44);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.18);
+  color: #ffffff;
+  padding: 0.95rem 1.1rem;
+  font-size: 1rem;
+  backdrop-filter: blur(3px);
+}
+
+#city::placeholder {
+  color: #d5dde6;
+}
+
+#button {
+  border: 0;
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--brand), #ff8c66);
+  color: #ffffff;
+  font-weight: 700;
+  padding: 0.95rem 1.45rem;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+#button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 18px rgba(242, 95, 76, 0.35);
+}
+
+.hint {
+  margin-top: 0.8rem;
+  color: #f2f6fb;
+  opacity: 0.9;
+}
+
+#status {
+  margin-top: 0.65rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.status-loading {
+  color: #fde68a;
+}
+
+.status-success {
+  color: #a7f3d0;
+}
+
+.status-error {
+  color: #fecdd3;
+}
+
+.container {
+  width: min(1080px, 92%);
+  margin: -3.2rem auto 2.6rem;
+  opacity: 0;
+  transform: translateY(16px);
+  pointer-events: none;
+  transition: opacity 0.45s ease, transform 0.45s ease;
+}
+
+.container.visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.panel {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  box-shadow: 0 20px 28px rgba(12, 25, 39, 0.09);
+  backdrop-filter: blur(8px);
+  margin-bottom: 1rem;
+  padding: 1.1rem 1.15rem;
+}
+
+.panel h2 {
+  font-family: "Fraunces", "Georgia", serif;
+  font-size: 1.45rem;
+  margin-bottom: 0.8rem;
+}
+
+#destination h2 {
+  font-family: "Fraunces", "Georgia", serif;
+  font-size: 2rem;
+}
+
+#destination p {
+  margin-top: 0.25rem;
+  color: var(--muted);
+}
+
+.destination-meta {
+  margin-top: 0.65rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+}
+
+.destination-meta span,
+.weather-meta span,
+.venue-content span {
+  font-size: 0.84rem;
+  color: #324152;
+  background: rgba(242, 95, 76, 0.1);
+  border-radius: 999px;
+  padding: 0.34rem 0.65rem;
+}
+
+.result-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(260px, 1fr));
+  gap: 1rem;
+}
+
+.weather-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.weather-main h3 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-top: 0.2rem;
+}
+
+.weather-condition {
+  font-size: 0.95rem;
+  color: var(--muted);
+}
+
+.weather-icon {
+  width: 58px;
+  height: 58px;
+}
+
+.weather-meta {
+  margin-top: 0.85rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.map-panel iframe {
+  width: 100%;
+  min-height: 250px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+}
+
+#venues {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.9rem;
+}
+
+.venue-card {
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: #ffffff;
+}
+
+.venue-image {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+
+.venue-content {
+  padding: 0.8rem;
+}
+
+.venue-content h3 {
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.venue-content p {
+  margin-top: 0.45rem;
+  font-size: 0.9rem;
+  line-height: 1.45;
+  color: var(--muted);
+}
+
+.venue-content a {
+  display: inline-block;
+  margin-top: 0.55rem;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--brand-dark);
+  text-decoration: none;
+}
+
+.venue-content a:hover {
+  text-decoration: underline;
+}
+
+.venue-content span {
+  display: inline-block;
+  margin-top: 0.6rem;
+}
+
+.empty-copy {
+  color: var(--muted);
+}
+
+.site-footer {
+  text-align: center;
+  padding: 1rem 0 1.5rem;
+  color: #4c5b6c;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (max-width: 900px) {
   .container {
-    max-width: 900px;
-    margin: auto;
-    visibility: hidden;
-  }
-  
-  .weather h2 {
-    font-family: Montserrat;
-    font-size: 18px;
-    line-height: 0.78;
-    text-align: left;
-    color: #4a4a4a;
-  }
-  
-  .weather {
-    width: 200px;
-    height: 260px;
-    padding: 20px;
-    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
-  }
-  
-  .weathericon {
-    width: 150px;
-    height: 150px;
-  }
-  
-  .venue {
-    width: 275px;
-    padding: 20px;
-    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
-  }
-  
-  .venueimage {
-    margin-top: 20px;
-  }
-  
-  #venues h2 {
-    font-family: Work Sans;
-    font-size: 22px;
-    font-weight: 600;
-    line-height: 0.77;
-    text-align: center;
-    padding-top: 5px;
-  }
-  
-  #destination {
-    font-family: Montserrat;
-    font-size: 30px;
-    font-weight: 600;
-    letter-spacing: 0.9px;
-    text-align: left;
-    color: #27b7c1;
-  }
-  
-  .sectiontitle {
-    width: 300px;
-    align-items: center;
-  }
-  
-  .sectiontitle h2 {
-    font-family: Montserrat;
-    font-size: 22px;
-    font-weight: 300;
-    letter-spacing: 3.4px;
-    text-align: left;
-    color: #4a4a4a;
-  }
-  
-  #venues {
-    display: flex;
-    justify-content: space-around;
-    min-height: 250px;
-  }
-  
-  #weather {
-    display: flex;
-    justify-content: space-around;
-    min-height: 150px;
-  }
-  
-  #city {
-    width: 286px;
-    height: 46px;
-    border-radius: 4px;
-    border: solid 2.5px #ffffff;
-    background-color: inherit;
-    opacity: 0.73;
-    font-family: Source Sans Pro;
-    font-size: 18px;
-    line-height: 1;
-    letter-spacing: 0.4px;
-    text-align: left;
-    color: #ffffff;
-  }
-  
-  #button {
-    width: 140px;
-    height: 46px;
-    border-radius: 4px;
-    background-color: #27b7c1;
-    font-family: Source Sans Pro;
-    font-size: 18px;
-    font-weight: 600;
-    line-height: 0.94;
-    letter-spacing: 0.5px;
-    text-align: center;
-    color: #ffffff;
-  }
-  
-  @media (max-width: 860px) {
-    main {
-      background-image: url('../img/travel-header-vancouver.jpg');
-    }
-  
-    h1 {
-      padding-top: 80px;
-      font-size: 32px;
-    }
-  
-    form {
-      margin-top: 30px;
-      padding-bottom: 10px;
-    }
-  
-    #venues, #weather {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-    .venue, .weather {
-      margin: 10px auto;
-      display: flex;
-      flex-direction: column;
-      width: 80%;
-      align-items: center;
-    }
-  
-    .weather {
-      padding: 10px 20px;
-      height: 100%;
-    }
-  
-    .sectiontitle, .sectiontitle h2, #destination {
-      margin: auto;
-      text-align: center;
-    }
+    margin-top: -1.4rem;
   }
 
-  ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
-    color: white;
-    background-color: black;
-    font-weight: bold;
-    opacity: 1; /* Firefox */
+  .result-grid {
+    grid-template-columns: 1fr;
   }
-  
-  :-ms-input-placeholder { /* Internet Explorer 10-11 */
-    background-color: black;
-    font-weight: bold;
-    color: white;
+
+  #venues {
+    grid-template-columns: 1fr;
   }
-  
-  ::-ms-input-placeholder { /* Microsoft Edge */
-    background-color: black;
-    font-weight: bold;
-    color: white;
-  }
+}

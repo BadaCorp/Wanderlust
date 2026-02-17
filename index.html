@@ -2,60 +2,61 @@
 <html>
   <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Wanderlust</title>
     <link rel="stylesheet" type="text/css" href="public/reset.css" />
     <link rel="stylesheet" type="text/css" href="public/style.css" />
-    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro|Work+Sans" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Manrope:wght@400;500;700&display=swap" rel="stylesheet">
   </head>
   <body>
-    <header>
-      <img class="logo" src="https://content.codecademy.com/courses/intermediate-javascript-requests/wanderlust/logo.svg" alt="logo" />
+    <header class="hero">
+      <div class="hero__content">
+        <img
+          class="logo"
+          src="https://content.codecademy.com/courses/intermediate-javascript-requests/wanderlust/logo.svg"
+          alt="Wanderlust logo"
+        />
+        <p class="eyebrow">Plan smarter trips with live data</p>
+        <h1>Where do you want to land?</h1>
+        <p class="hero__subtitle">
+          Enter a city to get current weather, nearby attractions, and a live map.
+        </p>
+        <form id="search-form" autocomplete="off">
+          <label for="city" class="sr-only">Search city</label>
+          <input type="text" id="city" placeholder="Try Tokyo, Nairobi, Lisbon..." required>
+          <button id="button" type="submit">Explore</button>
+        </form>
+        <p class="hint">Tip: search by city name for best results.</p>
+        <p id="status" aria-live="polite"></p>
+      </div>
     </header>
-    <main>
-      <h1>Where do you want to land?</h1>
-      <form autocomplete="off">
-        <input type="text" id="city" placeholder="Country, state, or City?">
-        <button id="button" type="submit">Submit</button>
-      </form>
+    <main class="container" id="results" aria-live="polite">
+      <section id="destination" class="panel"></section>
+      <section class="result-grid">
+        <article class="panel" id="weather-panel">
+          <h2>Current Weather</h2>
+          <div id="weather"></div>
+        </article>
+        <article class="panel map-panel">
+          <h2>Map</h2>
+          <iframe
+            id="map-frame"
+            title="Destination map"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+          ></iframe>
+        </article>
+      </section>
+      <section class="panel">
+        <h2>Top Attractions</h2>
+        <section id="venues"></section>
+      </section>
     </main>
-    <div class="container">
-    <div id="destination">
-
-    </div>
-    <div class="sectiontitle">
-      <h2>CURRENT WEATHER</h2>
-    </div>
-    <section id="weather">
-
-        <div class="weather" id="weather1">
-
-        </div>
-
-    </section>
-    <div class="sectiontitle">
-      <h2>TOP ATTRACTIONS</h2>
-    </div>
-    <section id="venues">
-      <div class="venue" id="venue1">
-
-      </div>
-      <div class="venue" id="venue2">
-
-      </div>
-      <div class="venue" id="venue3">
-
-      </div>
-    </section>
-    <footer>
+    <footer class="site-footer">
+      <p>Data from Open-Meteo, Wikipedia, and OpenStreetMap.</p>
     </footer>
-
-  </div>
-    <script
-  src="https://code.jquery.com/jquery-3.2.1.min.js"
-  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-  crossorigin="anonymous"></script>
-    <script src="public/helpers.js"></script>
     <script src="public/main.js"></script>
   </body>
 </html>
