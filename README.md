@@ -1,6 +1,9 @@
+[![Netlify Status](https://api.netlify.com/api/v1/badges/144b28ea-c1da-4702-8059-d6fe477b6597/deploy-status)](https://app.netlify.com/projects/wanderlust-trips/deploys)
+
 # Wanderlust
 
 Wanderlust is a travel discovery web app that helps users explore a city with:
+
 - current weather
 - top attractions
 - a map preview
@@ -11,7 +14,7 @@ The app is built with vanilla HTML, CSS, and JavaScript and uses public APIs.
 
 - City search with geocoding
 - Live weather conditions (temperature, humidity, wind, day/night)
-- Up to 10 attractions per search
+- Up to 9 attractions per search
 - Attraction fallback strategy for better reliability:
   - Wikipedia nearby search
   - Nominatim/OpenStreetMap backup
@@ -53,22 +56,26 @@ Wanderlust/
 ## Getting Started
 
 1. Clone this repository:
+
 ```bash
 git clone <your-repo-url>
 cd Wanderlust
 ```
+
 2. Start a local static server (recommended):
+
 ```bash
 python3 -m http.server 8080
 ```
+
 3. Open:
-`http://localhost:8080`
+   `http://localhost:8080`
 
 ## Usage
 
 1. Enter a city (example: `Toronto`, `Paris`, `Tokyo`).
 2. Click **Explore**.
-3. View weather, map, and up to 10 attraction cards.
+3. View weather, map, and up to 9 attraction cards.
 
 ## Notes
 
