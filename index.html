@@ -4,6 +4,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Wanderlust</title>
+    <link rel="icon" type="image/svg+xml" href="public/favicon.svg">
+    <link rel="icon" href="public/favicon.ico" sizes="any">
+    <link rel="shortcut icon" href="public/favicon.svg">
     <link rel="stylesheet" type="text/css" href="public/reset.css" />
     <link rel="stylesheet" type="text/css" href="public/style.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -55,7 +58,18 @@
       </section>
     </main>
     <footer class="site-footer">
-      <p>Data from Open-Meteo, Wikipedia, and OpenStreetMap.</p>
+      <div class="site-footer__inner">
+        <div class="site-footer__brand">
+          <h3>Wanderlust</h3>
+          <p>Discover cities with live weather, map context, and local highlights.</p>
+        </div>
+        <nav class="site-footer__links" aria-label="Footer links">
+          <a href="https://open-meteo.com/" target="_blank" rel="noopener noreferrer">Weather Data</a>
+          <a href="https://www.wikipedia.org/" target="_blank" rel="noopener noreferrer">Attractions Data</a>
+          <a href="https://www.openstreetmap.org/" target="_blank" rel="noopener noreferrer">Map Data</a>
+        </nav>
+      </div>
+      <p class="site-footer__meta">Built for travel planning. Data by Open-Meteo, Wikipedia, and OpenStreetMap.</p>
     </footer>
     <script src="public/main.js"></script>
   </body>
